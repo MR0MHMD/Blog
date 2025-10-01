@@ -1,0 +1,16 @@
+{% extends 'parent/base.html' %}
+{% load static %}
+{% block title %}ticket form{% endblock %}
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/forms/ticket.css' %}">
+{% endblock %}
+{% block content %}
+    <form class="form" method="post" action="">
+        <fieldset class="fieldset">
+            <legend>افزودن تیکت</legend>
+            {% csrf_token %}
+            {{ form.as_div }}
+            <input class="submit" type="submit" value="ثبت تیکت">
+        </fieldset>
+    </form>
+{% endblock %}

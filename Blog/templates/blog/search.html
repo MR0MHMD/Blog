@@ -1,0 +1,30 @@
+{% extends 'parent/base.html' %}
+{% load static %}
+{% block title %}search list{% endblock %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'CSS/blog/list.css' %}">
+{% endblock %}
+{% block content %}
+    {% if query %}
+        <h2>
+        <span>نتیجه جستجو برای</span>
+        <span>"{{ query }}"</span>
+        <span>:در پست ها</span>
+        <span>{{ results.count }}</span>
+        </h2>
+    {% endif %}
+    <br>
+     <ol class="ol" style="--length: {{ results|length }}" role="list">
+        {% for post in results %}
+            <li class="li" style="--i: {{ forloop.counter }}">
+                <h3 class="h3">
+                    <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+                </h3>
+                <p>{{ post.description | truncatewords:10 }}</p>
+            </li>
+        {% empty %}
+            <h3>!متاسفانه هیچ نتیجه ای پیدا نشد</h3>
+        {% endfor %}
+    </ol>
+    
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'parent/base.html' %}
+{% load static %}
+{% block title %}register{% endblock %}
+{% block content %}
+    <h1>ثبت نام</h1>
+    <p>لطفا اطلاعات خود را وارد کنید</p>
+    <form class="form" method="post">
+        <fieldset class="fieldset">
+            <legend>ثبت نام</legend>
+            {% csrf_token %}
+            {{ form.as_div }}
+            <input class="submit" type="submit" value="ثبت نام">
+        </fieldset>
+    </form>
+{% endblock %}

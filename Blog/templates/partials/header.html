@@ -1,0 +1,14 @@
+<form method="get" action="{% url 'blog:post_search' %}">
+    <label for="query"></label>
+    <input type="text" name="query" id="query" required placeholder="کلمه مورد نظر را وارد کنید">
+    <input class="" type="submit" value="جستجو">
+</form>
+<br>
+{% if request.user.is_authenticated %}
+	<div>
+        <a href="{% url 'blog:profile' %}">{{ request.user.first_name | default:request.user.username  }}</a>
+    </div>
+{% else %}
+    <a href="{% url 'blog:login' %}">ورود</a> <br>
+    <a href="{% url 'blog:register' %}">ثبت نام</a>
+{% endif %} 

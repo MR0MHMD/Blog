@@ -1,0 +1,58 @@
+.post-detail--container{
+    background-color: #123ff1;
+    width: 80%;
+    height: auto;
+    margin: 40px auto;
+    border-radius: 50px;
+}
+.post-title{
+    text-align: center;
+    font-size: 50px;
+    background-color: #dd00ff;
+    border-radius: 50px 50px 0 0;
+    padding: 15px;
+}
+.post-author{
+    font-size: 25px ;
+}
+.post-description{
+    font-size: 25px;
+    padding: 30px;
+    color: white;
+}
+.post-published{
+    font-size: 20px;
+    padding: 20px;
+}
+.post-published--container{
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

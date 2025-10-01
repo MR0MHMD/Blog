@@ -1,0 +1,59 @@
+{% extends 'parent/base.html' %}
+{% load static %}
+{% load jformat %}
+{% load blog_tags %}
+{% block title %}Home{% endblock %}
+{% block head %}
+        <link rel="stylesheet" type="text/css" href="{% static 'CSS/blog/index.css' %}">
+{% endblock %}
+{% block content %}
+    <h2 class="page-title">آمار</h2>
+    <div class="totals-container">
+        <p class="totals"> تعداد پست ها<br>{% total_posts %}</p>
+        <p class="totals"> تعداد نظرات<br>{% total_comments %}</p>
+    </div>
+    <div class="main-cont">
+    
+        <div class="posts-container">
+            {% latest_posts %}
+        </div>
+        <div class="posts-container">
+            {% most_popular_posts as pop_posts %}
+            <h2 class="page-title posts--title">محبوب ترین پست ها</h2>
+            {% for post in pop_posts %}
+                <div class="posts-cont">
+                    <div class="post-image--cont">
+                        <img class="post-image" src="{{ post.images.first.image_file.url }}" alt="{{ post.images.first.title }}">
+                    </div>
+                    <div class="post-data">
+                        <div class="profile-info--cont">
+                            <img class="profile-image" src="{{ post.author.account.photo.url }}" alt="">
+                            <a class="username-link" href="{% url 'blog:profile_detail' post.author.id %}">{{ post.author }}</a>
+                        </div>
+                        <div class="post-info">
+                            <h3><a class="title" href="{{ post.get_absolute_url }}">{{ post.title }}</a></h3>
+                            <div class="post-desc">{{ post.description | markdown | safe | truncatewords:25 }}</div>
+                            <p class="post-time">{{ post.publish | jformat:'%Y/%m/%d | %H:%M ' }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <h2>طولانی ترین پست</h2>
+    {% max_reading_time as mart %}
+    {% for post in mart %}
+    	<p><a href="{{ post.get_absolute_url }}">{{ post.title }} : with {{ post.max_time }} reading time</a></p>
+    {% endfor %}
+    
+    <h2>کوتاه ترین پست</h2>
+    {% min_reading_time as mirt %}
+    {% for post in mirt %}
+    	<p><a href="{{ post.get_absolute_url }}">{{ post.title }} : with {{ post.min_time }} reading time</a></p>
+    {% endfor %}
+    
+    <h2>فعال ترین کاربران</h2>
+    
+    
+    
+{% endblock %}

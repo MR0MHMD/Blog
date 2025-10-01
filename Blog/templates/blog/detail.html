@@ -1,0 +1,45 @@
+{% extends 'parent/base.html' %}
+{% load static %}
+{% load blog_tags %}
+{% load jformat %}
+{% block title %}
+    post detail
+{% endblock %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'CSS/blog/detail.css' %}">
+    <style>
+        div {
+            color: black;
+        }
+    </style>
+{% endblock %}
+{% block content %}
+    <div class="post-detail--container">
+        <h2 class="post-title">{{ post.title }} <span class="post-author">by <a href="{% url 'blog:profile_detail' post.author.id %}">{{ post.author }}</a></span></h2>
+        <p class="post-description">{{ post.description | markdown}}</p>
+        <div class="post-published--container">
+            <hr>
+            <p class="post-published">{{ post.publish | jformat:'%Y/%m/%d | %H:%M ' }}</p>
+        </div>
+    </div>
+    <div>
+        {% with comments.count as cm_count %}
+            <p>{{ cm_count }} comment{{ cm_count | pluralize }}</p>
+        {% endwith %}
+    </div>
+    <div>
+        {% for comment in comments %}
+            <p>{{ comment.name }} : {{ comment.body | markdown }}</p>
+        {% empty %}
+            <p>نظری وجود ندارد!</p>
+        {% endfor %}
+
+    </div>
+    <div>
+        {% for image in post.images.all %}
+        	<img src="{{ image.image_file.url }}" alt="{{ image.title }}">  
+        {% endfor %}
+        
+    </div>
+    {% include 'forms/comment.html' %}
+{% endblock %}

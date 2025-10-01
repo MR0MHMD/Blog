@@ -1,0 +1,30 @@
+{% extends 'parent/base.html' %}
+{% load static %}
+{% block title %}
+    post list
+{% endblock %}
+{#{% block head %}#}
+{#    <link rel="stylesheet" href="{% static 'CSS/blog/list.css' %}">#}
+{#{% endblock %}#}
+{% block content %}
+    <a href="{% url 'blog:post_list_category' 'تکنولوژِی' %}">تکنولوژِی</a>
+    <br>
+    <a href="{% url 'blog:post_list_category' 'بلاکچین' %}">بلاکچین</a>
+    {% if category %}
+        <h1 class="main-title">لیست پست های {{ category }}</h1>
+    {% else %}
+        <h1 class="main-title">لیست پست ها</h1>
+    {% endif %} 
+    <ol class="ol" style="--length: {{ posts|length }}" role="list">
+        {% for post in posts %}
+            <li class="li" style="--i: {{ forloop.counter }}">
+                <h3 class="h3">
+                    <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+                </h3>
+                <p>{{ post.description | truncatewords:5 }}</p>
+                <img src="{{ post.images.first.image_file.url }}" alt="{{ post.images.first.title  }}">  
+            </li>
+        {% endfor %}
+    </ol>
+    {% include 'partials/pagination.html' with page=posts %}
+{% endblock %}
