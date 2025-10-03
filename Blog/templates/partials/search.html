@@ -1,0 +1,101 @@
+{% load static %}
+{% load blog_tags %}
+{% load jformat %}
+<meta charset="UTF-8">
+    <title>جستجو</title>
+    <style>
+        .body {
+            display: flex;
+            align-items: flex-start;
+            margin: 20px;
+        }
+
+        /* دکمه نمایش جستجو */
+        .toggle-btn {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: 0.2s;
+            margin: 20px 20px 0 0;
+        }
+
+        .toggle-btn:hover {
+            background-color: #0056b3;
+        }
+
+        /* کادر جستجو (پنهان در حالت پیشفرض) */
+        .search-box {
+            width: 400px;
+            margin-top: 15px;
+            display: none; /* مخفی در ابتدا */
+            box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+            border-radius: 50px;
+            overflow: hidden;
+            animation: slideDown 0.4s ease;
+        }
+
+        .search-box input[type="text"] {
+            flex: 1;
+            padding: 12px 50px 12px 20px;
+            border: none;
+            outline: none;
+            font-size: 16px;
+            background-color: #1e1e1e;
+            color: #eee;
+            width: calc(100% - 50px);
+        }
+
+        .search-box input[type="text"]::placeholder {
+            color: #888;
+        }
+
+        .search-box button {
+            width: 50px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .search-box button:hover {
+            background-color: #0056b3;
+        }
+
+        /* انیمیشن slide */
+        @keyframes slideDown {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+<div>
+    <!-- دکمه نمایش جستجو -->
+    <button class="toggle-btn" onclick="toggleSearch()">🔍 جستجو</button>
+<div class="body">
+    <form method="get" class="search-box" id="searchBox" action="{% url 'blog:post_search' %}">
+        <input type="text" name="query" placeholder="جستجو کن...">
+        <button type="submit">⮞</button>
+    </form>
+</div>
+</div>
+
+<script>
+    function toggleSearch() {
+        const box = document.getElementById("searchBox");
+        if (box.style.display === "none" || box.style.display === "") {
+            box.style.display = "flex"; // نمایش
+        } else {
+            box.style.display = "none"; // مخفی
+        }
+    }
+</script>
+
+</body>

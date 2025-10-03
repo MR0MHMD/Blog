@@ -1,8 +1,4 @@
-<form method="get" action="{% url 'blog:post_search' %}">
-    <label for="query"></label>
-    <input type="text" name="query" id="query" required placeholder="کلمه مورد نظر را وارد کنید">
-    <input class="" type="submit" value="جستجو">
-</form>
+{% include 'partials/search.html' %}
 <br>
 {% if request.user.is_authenticated %}
 	<div>
