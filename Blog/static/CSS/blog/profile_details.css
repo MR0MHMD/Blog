@@ -64,6 +64,7 @@
     width: 75%;
     border: 2px solid green;
     border-radius: 16px;
+    background-color: rgba(1, 10, 48, 0.73);
 }
 
 .profile-info--cont{
@@ -74,7 +75,7 @@
 }
 
 .post-data{
-    width: 500px;
+    width: 65%;
 }
 
 .profile-image{
@@ -105,6 +106,8 @@
     cursor: pointer;
     text-decoration: none;
     color: white;
+    text-align: center;
+    width: auto;
 }
 
 .title::after {
@@ -182,9 +185,28 @@
     bottom: 0;
 }
 .post-desc {
-    margin: 30px auto 10px;
+    margin: 30px 15px 10px;
     font-size: 20px;
     text-align: center;
+
+
 }
 
+.title-cont{
+    text-align: center;
+    margin-left: 20px;
+}
 
+.totals{
+    color: #2a70ca;
+    border: 2px solid #2a70ca;
+    width: 30%;
+    height: 50px;
+    text-align: center;
+    padding: 10px;
+    justify-content: center;
+    margin: 10px auto;
+    align-items: center;
+    align-content: center;
+    justify-items: center;
+}

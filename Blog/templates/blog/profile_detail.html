@@ -19,7 +19,7 @@
         <p class="birth-text"> {{ account.date_of_birth }} متولد شده</p>
     </div>
     <div class="posts-container">
-        <h2 class="page-title posts--title">پست های {{ user.username }}</h2>
+        <h2 class="totals">پست های {{ user.username }}</h2>
         {% for post in posts %}
             <div class="posts-cont">
                 <div class="post-image--cont">
@@ -31,7 +31,7 @@
                         <a class="username-link" href="{% url 'blog:profile_detail' post.author.id %}">{{ post.author }}</a>
                     </div>
                     <div class="post-info">
-                        <h3><a class="title" href="{{ post.get_absolute_url }}">{{ post.title }}</a></h3>
+                        <h3 class="title-cont"><a class="title" href="{{ post.get_absolute_url }}">{{ post.title }}</a></h3>
                         <div class="post-desc">{{ post.description | markdown | safe | truncatewords:25 }}</div>
                         <p class="post-time">{{ post.publish | jformat:'%Y/%m/%d | %H:%M ' }}</p>
                     </div>
