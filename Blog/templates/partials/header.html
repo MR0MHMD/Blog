@@ -1,10 +1,37 @@
-{% include 'partials/search.html' %}
-<br>
-{% if request.user.is_authenticated %}
-	<div>
-        <a href="{% url 'blog:profile' %}">{{ request.user.first_name | default:request.user.username  }}</a>
-    </div>
-{% else %}
-    <a href="{% url 'blog:login' %}">ورود</a> <br>
-    <a href="{% url 'blog:register' %}">ثبت نام</a>
-{% endif %} 
+<style>
+    .authentication-session{
+        max-width: 200px;
+        width: 100px;
+        height: 50px;
+        border: 2px solid red;
+        border-radius: 10px;
+    }
+    .authentication-session:hover{
+        background-color: #2c303d;
+    }
+    .auth-button{
+        display: block;
+        text-decoration: none;
+        color: red;
+        font-size: 22px;
+        text-align: center;
+        margin-top: 10px;
+    }
+    .header-cont{
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+    }
+</style>
+<div class="header-cont">
+    {% include 'partials/search.html' %}
+    {% if request.user.is_authenticated %}
+        <div class="authentication-session">
+            <a class="auth-button" href="{% url 'blog:profile' %}">{{ request.user.first_name | default:request.user.username  }}</a>
+        </div>
+    {% else %}
+        <div class="authentication-session">
+            <a class="auth-button" href="{% url 'blog:login' %}">ورود</a> <br>
+        </div>
+    {% endif %} 
+</div>
