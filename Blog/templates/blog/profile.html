@@ -4,41 +4,27 @@
 {% load jformat %}
 {% block title %}profile{% endblock %}
 {% block head %}
-    <style>
-        .table{
-            width: 80%;
-            border: 2px solid black;
-            text-align: right;
-            direction: rtl;
-            margin: 0 auto;
-        }
-    </style>
+    <link rel="stylesheet" href="{% static 'CSS/blog/profile.css' %}">
 {% endblock %}
 {% block content %}
-    <p><a href="{% url 'blog:create_post' %}">ایجاد پست جدید</a></p>
 	<table class="table" >
-        <tr>
-            <th>ردیف</th>
+        <tr class="tr">
+            <th class="row">ردیف</th>
             <th>پست</th>
             <th>ویرایش</th>
             <th>حذف</th>
         </tr>
         {% for post in posts %}
-            <tr>
-                <td>{{ forloop.counter }}</td>
-                <td><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></td>
-                <td><a href="{% url 'blog:edit_post' post.id %}">ویرایش</a></td>
-                <td><a href="{% url 'blog:delete_post' post.id %}">حذف</a></td>
+            <tr class="tr">
+                <td class="row">{{ forloop.counter }}</td>
+                <td><a class="title" href="{{ post.get_absolute_url }}">{{ post.title }}</a></td>
+                <td><a href="{% url 'blog:edit_post' post.id %}">
+                    <img class="icon edit" src="{% static 'icons/edit.svg' %}" alt="ویرایش">
+                </a></td>
+                <td><a href="{% url 'blog:delete_post' post.id %}">
+                    <img class="icon delete" src="{% static 'icons/delete.svg' %}" alt="حذف">
+                </a></td>
             </tr>
         {% endfor %}
     </table>
-
-    <form method="post" action="{% url 'blog:logout' %}">
-    {% csrf_token %}
-        <button type="submit">خروج</button>
-    </form>
-    <br>
-    <a href="{% url 'blog:password_change' %}">تغییر رمز ورود</a>
-    <br>
-    <a href="{% url 'blog:edit_account' %}">ویرایش اطلاعات شخصی</a>
 {% endblock %}

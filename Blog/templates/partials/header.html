@@ -5,9 +5,28 @@
 <div class="header-cont">
     {% include 'partials/search.html' %}
     {% if request.user.is_authenticated %}
-        <div class="authentication-session">
-            <a class="auth-button" href="{% url 'blog:profile' %}">{{ request.user.first_name | default:request.user.username  }}</a>
-        </div>
+        {% if request.resolver_match.url_name == 'profile' %}
+            <div class="drop-down">
+                <button class="drop-btn">
+                    {{ request.user.first_name | default:request.user.username }}
+                    <img src="{% static 'icons/flash.svg' %}" alt="">
+                </button>
+                <div class="side">
+                    <a href="{% url 'blog:password_change' %}" class="link">تغییر رمز</a>
+                    <a href="{% url 'blog:edit_account' %}" class="link">ویرایش اطلاعات</a>
+                    <a href="{% url 'blog:create_post' %}" class="link">ایجاد پست جدید</a>
+                    <form method="post" action="{% url 'blog:logout' %}">
+                        {% csrf_token %}
+                        <button class="link" type="submit">خروج</button>
+                    </form>
+                </div>
+            </div>
+        {% else %}
+            <div class="authentication-session">
+                <a class="auth-button" href="{% url 'blog:profile' %}">{{ request.user.first_name | default:request.user.username  }}</a>
+            </div>
+        {% endif %} 
+        
     {% else %}
         <div class="authentication-session">
             <a class="auth-button" href="{% url 'blog:login' %}">ورود</a> <br>
