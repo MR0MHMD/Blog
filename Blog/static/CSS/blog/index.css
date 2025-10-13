@@ -4,6 +4,9 @@
     font-weight: normal;
     font-style: normal;
 }
+body{
+    font-family: Dana sans-serif;
+}
 
 .page-title, .totals{
     color: #2a70ca;
@@ -23,6 +26,7 @@
     margin: 20px auto;
     font-size: 25px;
     width: 30%;
+    height: 75px;
 }
 
 .totals-container{
@@ -160,6 +164,3 @@
 .post-desc {
     font-size: 20px;
 }
-
-
-
