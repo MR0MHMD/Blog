@@ -7,13 +7,22 @@
 {% endblock %}
 {% block head %}
     <link rel="stylesheet" href="{% static 'CSS/blog/detail.css' %}">
-    <style>
-        div {
-            color: black;
-        }
-    </style>
 {% endblock %}
 {% block content %}
+    <div class="slider-wrapper">
+        <div class="slider" id="slider">
+            <div class="slides">
+                {% for image in post.images.all %}
+                    <img src="{{ image.image_file.url }}" alt="">
+                {% endfor %}
+            </div>
+        
+            <button class="btn prev">❮</button>
+            <button class="btn next">❯</button>
+            <div class="dots"></div>
+        </div>
+    </div>
+    
     <div class="post-detail--container">
         <h2 class="post-title">{{ post.title }} <span class="post-author">by <a href="{% url 'blog:profile_detail' post.author.id %}">{{ post.author }}</a></span></h2>
         <p class="post-description">{{ post.description | markdown}}</p>
@@ -35,11 +44,6 @@
         {% endfor %}
 
     </div>
-    <div>
-        {% for image in post.images.all %}
-        	<img src="{{ image.image_file.url }}" alt="{{ image.title }}">  
-        {% endfor %}
-        
-    </div>
     {% include 'forms/comment.html' %}
+    <script src={% static 'JS/blog/detail.js' %}></script>
 {% endblock %}

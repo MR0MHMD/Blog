@@ -110,7 +110,7 @@ def post_image_upload_to(instance, filename):
 
 class Image(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='images', verbose_name='پست')
-    image_file = ResizedImageField(upload_to=post_image_upload_to, size=(500, 500), quality=75, crop=['middle', 'center'], verbose_name='تصویر')
+    image_file = ResizedImageField(upload_to=post_image_upload_to, size=(500, 500), quality=100, crop=['middle', 'center'], verbose_name='تصویر')
     title = models.CharField(max_length=250, verbose_name='عنوان', blank=True)
     description = models.TextField(verbose_name='توضیحات', blank=True)
     created = jmodels.jDateTimeField(auto_now_add=True)
