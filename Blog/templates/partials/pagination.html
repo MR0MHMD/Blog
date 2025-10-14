@@ -1,10 +1,5 @@
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="fa">
-<head>
-    <meta charset="UTF-8">
-    <title>لیست پست‌ها</title>
     <style>
         .pagination {
             display: flex;
@@ -42,15 +37,7 @@
             pointer-events: none;
         }
     </style>
-</head>
 <body>
-
-    {% for post in posts %}
-        <div>
-            <h2>{{ post.title }}</h2>
-            <p>{{ post.body|truncatewords:20 }}</p>
-        </div>
-    {% endfor %}
 
     <div class="pagination">
         {% if posts.has_previous %}
@@ -75,6 +62,3 @@
             <span class="disabled">بعدی &#187;</span>
         {% endif %}
     </div>
-
-</body>
-</html>

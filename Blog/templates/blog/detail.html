@@ -9,41 +9,68 @@
     <link rel="stylesheet" href="{% static 'CSS/blog/detail.css' %}">
 {% endblock %}
 {% block content %}
-    <div class="slider-wrapper">
-        <div class="slider" id="slider">
-            <div class="slides">
-                {% for image in post.images.all %}
-                    <img src="{{ image.image_file.url }}" alt="">
+     <main class="page" role="main">
+
+        <section class="content-grid">
+
+            <!-- Slider Section (keep structure) -->
+            <div class="slider-wrapper">
+                <div class="slider" id="slider">
+                    <div class="slides">
+                        {% for image in post.images.all %}
+                            <img src="{{ image.image_file.url }}" alt="">
+                        {% endfor %}
+                    </div>
+
+                    <button class="btn prev">❮</button>
+                    <button class="btn next">❯</button>
+                    <div class="dots"></div>
+                </div>
+            </div>
+
+            <!-- Post Detail Section (structure only, content unchanged) -->
+            <article class="post-detail--container" aria-labelledby="post-title">
+                <div class="post-header">
+                    <div class="meta">پست</div>
+                    <div class="post-actions">
+                        <button class="btn-action" title="اشتراک گذاری">اشتراک</button>
+                        <button class="btn-action" title="ذخیره">ذخیره</button>
+                    </div>
+                </div>
+
+                <div class="post-hero">
+                    <h2 id="post-title" class="post-title">
+                        {{ post.title }} <span class="post-author">by <a href="{% url 'blog:profile_detail' post.author.id %}">{{ post.author }}</a></span>
+                    </h2>
+
+                    <div class="post-description">{{ post.description | markdown }}</div>
+
+                    <div class="post-published--container">
+                        <p class="post-published">{{ post.publish | jformat:'%Y/%m/%d | %H:%M ' }}</p>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Comments Section -->
+            <div class="comments" aria-live="polite">
+                <div class="muted">
+                    {% with comments.count as cm_count %}
+                        <p>{{ cm_count }} comment{{ cm_count | pluralize }}</p>
+                    {% endwith %}
+                </div>
+
+                {% for comment in comments %}
+                    <div class="comment">
+                        <strong>{{ comment.name }}</strong>
+                        <div>{{ comment.body | markdown }}</div>
+                    </div>
+                {% empty %}
+                    <p class="muted">نظری وجود ندارد!</p>
                 {% endfor %}
             </div>
-        
-            <button class="btn prev">❮</button>
-            <button class="btn next">❯</button>
-            <div class="dots"></div>
-        </div>
-    </div>
-    
-    <div class="post-detail--container">
-        <h2 class="post-title">{{ post.title }} <span class="post-author">by <a href="{% url 'blog:profile_detail' post.author.id %}">{{ post.author }}</a></span></h2>
-        <p class="post-description">{{ post.description | markdown}}</p>
-        <div class="post-published--container">
-            <hr>
-            <p class="post-published">{{ post.publish | jformat:'%Y/%m/%d | %H:%M ' }}</p>
-        </div>
-    </div>
-    <div>
-        {% with comments.count as cm_count %}
-            <p>{{ cm_count }} comment{{ cm_count | pluralize }}</p>
-        {% endwith %}
-    </div>
-    <div>
-        {% for comment in comments %}
-            <p>{{ comment.name }} : {{ comment.body | markdown }}</p>
-        {% empty %}
-            <p>نظری وجود ندارد!</p>
-        {% endfor %}
 
-    </div>
-    {% include 'forms/comment.html' %}
-    <script src={% static 'JS/blog/detail.js' %}></script>
+            {% include 'forms/comment.html' %}
+            <script src={% static 'JS/blog/detail.js' %}></script>
+        </section>
+     </main>
 {% endblock %}

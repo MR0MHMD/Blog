@@ -23,7 +23,7 @@ def post_list(request, category=None):
         posts = Post.published.filter(category=category)
     else:
         posts = Post.published.all()
-    paginator = Paginator(posts, 3)
+    paginator = Paginator(posts, 10)
     page_number = request.GET.get('page', 1)
     try:
         posts = paginator.page(page_number)
