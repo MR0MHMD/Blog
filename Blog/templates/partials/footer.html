@@ -1,1 +1,54 @@
-{#<p>footer</p>#}
+{% load static %}
+<link rel="stylesheet" href="{% static 'CSS/partials/footer.css' %}">
+
+<footer>
+    <div class="footer-container">
+        <div class="footer-col">
+            <h3>درباره ما</h3>
+            <p>
+                ما در این وبلاگ تلاش می‌کنیم جدیدترین مطالب دنیای تکنولوژی، بلاک‌چین و نوآوری را با شما به اشتراک بگذاریم.
+            </p>
+        </div>
+
+        <div class="footer-col">
+            <h3>دسترسی سریع</h3>
+            <a href="#">خانه</a>
+            <a href="#">پست‌ها</a>
+            <a href="#">دسته‌بندی‌ها</a>
+            <a href="#">تماس با ما</a>
+        </div>
+
+        <div class="footer-col">
+            <h3>ما را دنبال کنید</h3>
+            <div class="footer-social">
+                <!-- Instagram -->
+                <a href="#" title="Instagram" aria-label="Instagram">
+                    <img src="{% static 'icons/Instagram.svg' %}" alt="">
+                </a>
+        
+                <!-- Telegram -->
+                <a href="#" title="Telegram" aria-label="Telegram">
+                    <img src="{% static 'icons/Telegram.svg' %}" alt="">
+                </a>
+        
+                <!-- GitHub -->
+                <a href="#" title="GitHub" aria-label="GitHub">
+                    <img src="{% static 'icons/GitHub.svg' %}" alt="">
+                </a>
+            </div>
+        </div>
+
+        <div class="footer-col">
+            <h3>خبرنامه</h3>
+            <p>برای دریافت آخرین پست‌ها ایمیل خود را وارد کنید:</p>
+            <form>
+                <input type="email" placeholder="ایمیل شما..." required>
+                <input type="submit" value="عضویت">
+            </form>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        © 2025 MyBlog — تمامی حقوق محفوظ است.
+    </div>
+</footer>

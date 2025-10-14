@@ -1,20 +1,16 @@
 {% extends 'parent/base.html' %}
 {% load static %}
 {% block title %}post form{% endblock %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'CSS/forms/forms.css' %}">
+{% endblock %}
 {% block content %}
-        <form class="form" method="post" enctype="multipart/form-data">
-            <fieldset class="fieldset">
-                <legend>ایجاد پست جدید</legend>
-                {% csrf_token %}
-                {{ form.as_div }}
-                {% if post %}
-                	{% for image in post.images.all %}
-                		<img src="{{ image.image_file.url }}" alt="{{ image.title }}">
-                        <a href="{% url 'blog:delete_image' image.id %}">حدف تصویر</a>
-                	{% endfor %}
-                	
-                {% endif %} 
-                <input class="submit" type="submit" value="ایجاد پست">
-            </fieldset>
+        <div class="form-container">
+        <h2>ارسال فرم</h2>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="ارسال">
         </form>
+    </div> 
 {% endblock %}

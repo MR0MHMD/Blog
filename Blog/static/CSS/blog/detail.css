@@ -140,11 +140,13 @@ main{
 }
 
 .comment {
+    width: 70%;
     background: rgba(255,255,255,0.03);
-    padding: 12px;
+    padding: 20px;
     border-radius: 12px;
     border: 1px solid rgba(255,255,255,0.05);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+    margin: 10px auto;
 }
 
 .comment:hover {
@@ -154,6 +156,11 @@ main{
 
 .comment strong {
     color: #fff;
+    margin-bottom: 15px;
+}
+
+.comment p {
+    margin-top: 15px;
 }
 
 .muted {

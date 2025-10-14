@@ -4,22 +4,31 @@
 {% load blog_tags %}
 {% block title %}Home{% endblock %}
 {% block head %}
-        <link rel="stylesheet" type="text/css" href="{% static 'CSS/blog/index.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/blog/index.css' %}">
 {% endblock %}
 {% block content %}
+    <!-- Page Title -->
     <h2 class="page-title">آمار</h2>
+
+    <!-- Totals -->
     <div class="totals-container">
-        <p class="totals"> تعداد پست ها<br>{% total_posts %}</p>
-        <p class="totals"> تعداد نظرات<br>{% total_comments %}</p>
+        <p class="totals">تعداد پست‌ها<br>{% total_posts %}</p>
+        <p class="totals">تعداد نظرات<br>{% total_comments %}</p>
     </div>
+
+    <!-- Main Container -->
     <div class="main-cont">
-    
+
+        <!-- Latest Posts -->
         <div class="posts-container">
+            <h2 class="page-title posts--title">جدیدترین پست‌ها</h2>
             {% latest_posts %}
         </div>
+
+        <!-- Most Popular Posts -->
         <div class="posts-container">
+            <h2 class="page-title posts--title">محبوب‌ترین پست‌ها</h2>
             {% most_popular_posts as pop_posts %}
-            <h2 class="page-title posts--title">محبوب ترین پست ها</h2>
             {% for post in pop_posts %}
                 <div class="posts-cont">
                     <div class="post-image--cont">
@@ -27,7 +36,7 @@
                     </div>
                     <div class="post-data">
                         <div class="profile-info--cont">
-                            <img class="profile-image" src="{{ post.author.account.photo.url }}" alt="">
+                            <img class="profile-image" src="{{ post.author.account.photo.url }}" alt="{{ post.author }}">
                             <a class="username-link" href="{% url 'blog:profile_detail' post.author.id %}">{{ post.author }}</a>
                         </div>
                         <div class="post-info">
@@ -39,16 +48,24 @@
                 </div>
             {% endfor %}
         </div>
+
     </div>
-    <h2>طولانی ترین پست</h2>
+
+    <!-- Longest Post -->
+    <h2>طولانی‌ترین پست</h2>
     {% max_reading_time as mart %}
     {% for post in mart %}
-    	<p><a href="{{ post.get_absolute_url }}">{{ post.title }} : with {{ post.max_time }} reading time</a></p>
+        <p style="text-align: center;">
+            <a href="{{ post.get_absolute_url }}">{{ post.title }} : با زمان مطالعه {{ post.max_time }}</a>
+        </p>
     {% endfor %}
-    
-    <h2>کوتاه ترین پست</h2>
+
+    <!-- Shortest Post -->
+    <h2>کوتاه‌ترین پست</h2>
     {% min_reading_time as mirt %}
     {% for post in mirt %}
-    	<p><a href="{{ post.get_absolute_url }}">{{ post.title }} : with {{ post.min_time }} reading time</a></p>
+        <p style="text-align: center;">
+            <a href="{{ post.get_absolute_url }}">{{ post.title }} : با زمان مطالعه {{ post.min_time }}</a>
+        </p>
     {% endfor %}
 {% endblock %}

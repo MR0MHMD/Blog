@@ -7,6 +7,8 @@
 {% endblock %}
 {% block head %}
     <link rel="stylesheet" href="{% static 'CSS/blog/detail.css' %}">
+{#    <link rel="stylesheet" href="{% static 'CSS/forms/forms.css' %}">#}
+    
 {% endblock %}
 {% block content %}
      <main class="page" role="main">
@@ -62,7 +64,7 @@
                 {% for comment in comments %}
                     <div class="comment">
                         <strong>{{ comment.name }}</strong>
-                        <div>{{ comment.body | markdown }}</div>
+                        <p>{{ comment.body | markdown }}</p>
                     </div>
                 {% empty %}
                     <p class="muted">نظری وجود ندارد!</p>

@@ -2,15 +2,15 @@
 {% load static %}
 {% block title %}ticket form{% endblock %}
 {% block head %}
-    <link rel="stylesheet" type="text/css" href="{% static 'CSS/forms/ticket.css' %}">
+    <link rel="stylesheet" href="{% static 'CSS/forms/forms.css' %}">
 {% endblock %}
 {% block content %}
-    <form class="form" method="post" action="">
-        <fieldset class="fieldset">
-            <legend>افزودن تیکت</legend>
+    <div class="form-container">
+        <h2>ارسال تیکت</h2>
+        <form method="post" enctype="multipart/form-data" action="{% url 'blog:post_comment' post.id %}">
             {% csrf_token %}
-            {{ form.as_div }}
-            <input class="submit" type="submit" value="ثبت تیکت">
-        </fieldset>
-    </form>
+            {{ form.as_p }}
+            <input type="submit" value="ارسال">
+        </form>
+    </div> 
 {% endblock %}
