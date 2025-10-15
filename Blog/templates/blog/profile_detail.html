@@ -2,41 +2,62 @@
 {% load static %}
 {% load jformat %}
 {% load blog_tags %}
-{% block title %}edit account{% endblock %}
+{% block title %}personal info{% endblock %}
 {% block head %}
     <link rel="stylesheet" href="{% static 'CSS/blog/profile_details.css' %}">
 {% endblock %}
 {% block content %}
-    <div class="main-profile--cont">
-        <img class="profile-picture" src="{{ account.photo.url }}" alt="">
-        <h2 class="username-text">{{ user.username }}</h2>
+
+<div class="profile-page container">
+
+    <!-- ===== بخش اطلاعات کاربر ===== -->
+    <section class="profile-info--section card">
+        <div class="profile-header">
+            <img class="profile-picture" src="{{ account.photo.url }}" alt="{{ user.username }}">
+            <h2 class="username-text">{{ user.username }}</h2>
+        </div>
+
         <div class="important-info">
             <h3 class="name-text">{{ user.first_name }} {{ user.last_name }}</h3>
             <p class="job-text">فعال در حوزه {{ account.job }}</p>
         </div>
-        <hr>
-        <p class="bio_text">{{ account.bio }}</p>
-        <p class="birth-text"> {{ account.date_of_birth }} متولد شده</p>
-    </div>
-    <div class="posts-container">
-        <h2 class="totals">پست های {{ user.username }}</h2>
-        {% for post in posts %}
-            <div class="posts-cont">
-                <div class="post-image--cont">
-                    <img class="post-image" src="{{ post.images.first.image_file.url }}" alt="{{ post.images.first.title }}">
-                </div>
-                <div class="post-data">
-                    <div class="profile-info--cont">
-                        <img class="profile-image" src="{{ post.author.account.photo.url }}" alt="">
-                        <a class="username-link" href="{% url 'blog:profile_detail' post.author.id %}">{{ post.author }}</a>
+
+        <hr class="divider">
+
+        <div class="bio-container">
+            <p class="bio-text">{{ account.bio }}</p>
+            <p class="birth-text">{{ account.date_of_birth }} متولد شده</p>
+        </div>
+    </section>
+
+    <!-- ===== بخش پست‌های کاربر ===== -->
+    <section class="user-posts--section">
+        <h2 class="totals">پست‌های {{ user.username }}</h2>
+
+        <div class="posts-grid">
+            {% for post in posts %}
+                <article class="post-card card">
+                    <div class="post-image--cont">
+                        <img class="post-image" src="{{ post.images.first.image_file.url }}" alt="{{ post.images.first.title }}">
                     </div>
-                    <div class="post-info">
-                        <h3 class="title-cont"><a class="title" href="{{ post.get_absolute_url }}">{{ post.title }}</a></h3>
-                        <div class="post-desc">{{ post.description | markdown | safe | truncatewords:25 }}</div>
-                        <p class="post-time">{{ post.publish | jformat:'%Y/%m/%d | %H:%M ' }}</p>
+                    <div class="post-data">
+                        <div class="profile-info--cont">
+                            <img class="profile-image" src="{{ post.author.account.photo.url }}" alt="{{ post.author }}">
+                            <a class="username-link" href="{% url 'blog:profile_detail' post.author.id %}">{{ post.author }}</a>
+                        </div>
+                        <div class="post-info">
+                            <h3 class="title-cont">
+                                <a class="title" href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+                            </h3>
+                            <p class="post-desc">{{ post.description | markdown | safe | truncatewords:25 }}</p>
+                            <p class="post-time">{{ post.publish | jformat:'%Y/%m/%d | %H:%M ' }}</p>
+                        </div>
                     </div>
-                </div>
-            </div>
-        {% endfor %}
-    </div>
+                </article>
+            {% endfor %}
+        </div>
+    </section>
+
+</div>
+
 {% endblock %}

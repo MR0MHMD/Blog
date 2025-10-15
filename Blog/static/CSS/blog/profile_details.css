@@ -1,210 +1,175 @@
-*{
-    margin: 0;
-    box-sizing: border-box;
-}
-.main-profile--cont{
-    width: 75%;
-    min-height: 600px;
-    margin: 50px auto;
-    background-color: #135496;
-    border-radius: 20px;
+/* ===== profile_details.css ===== */
+
+/* کانتینر کلی صفحه */
+.profile-page {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
     padding: 20px;
-    position: relative;
 }
 
-.picture-cont{
-    height: 300px;
-    width: 100%;
-}
-
-.profile-picture{
-    display: block;
-    border-radius: 100%;
-    width: 250px;
-    height: 250px;
-    margin: 20px auto;
-}
-
-.username-text{
+/* ===== بخش اطلاعات پروفایل ===== */
+.profile-info--section {
+    background: rgba(255,255,255,0.02);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    padding: 30px;
     text-align: center;
+    color: var(--color-text);
+    transition: var(--transition);
+}
+
+.profile-info--section:hover {
+    box-shadow: var(--shadow-glow);
+}
+
+.profile-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.profile-picture {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--color-secondary);
+}
+
+.username-text {
     font-size: 32px;
-}
-
-.important-info{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.name-text{
-    display: inline-block;
-    font-size: 25px;
-    margin: 20px 10px;
-}
-
-.bio_text{
-    font-size: 20px;
-    margin: 20px;
-}
-
-.birth-text{
-    font-size: 20px;
-    position: absolute;
-    bottom: 10px;
-}
-
-.job-text{
-    font-size: 25px;
-}
-
-.posts-cont{
-    display: flex;
-    gap: 20px;
-    margin: 20px auto;
-    width: 75%;
-    border: 2px solid green;
-    border-radius: 16px;
-    background-color: rgba(1, 10, 48, 0.73);
-}
-
-.profile-info--cont{
-    display: flex;
-    gap: 20px;
-    align-items: center;
-    transition: background-color 0.3s ease;
-}
-
-.post-data{
-    width: 65%;
-}
-
-.profile-image{
-    margin: 10px 0 0 ;
-    width: 50px;
-    height: 50px;
-    border-radius: 100%;
-}
-
-.username-link{
-    font-family: Dana sans-serif;
-    font-size: 20px;
-    text-decoration: none;
-    color: white;
-    display: block;
-    transition: color 0.2s ease-in;
-}
-
-.username-link:hover{
-    color: red;
-}
-
-.title {
-    position: relative;
-    display: inline-block;
-    font-size: 24px;
     font-weight: bold;
-    cursor: pointer;
-    text-decoration: none;
-    color: white;
-    text-align: center;
-    width: auto;
+    margin: 0;
 }
 
-.title::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -4px;
-    width: 100%;
-    height: 2px;
-    background: #3498db;
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.50s ease;
+.important-info {
+    margin-top: 10px;
 }
 
-.title:hover::after {
-    transform: scaleX(1);
-    transform-origin: right;
+.name-text {
+    font-size: 24px;
+    margin: 4px 0;
 }
 
+.job-text {
+    font-size: 18px;
+    color: var(--color-muted);
+}
+
+.divider {
+    border: 0;
+    height: 1px;
+    background: var(--color-border);
+    margin: 20px 0;
+}
+
+.bio-container {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.bio-text {
+    margin-bottom: 10px;
+}
+
+.birth-text {
+    color: var(--color-muted);
+}
+
+/* ===== بخش پست‌ها ===== */
+.user-posts--section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.user-posts--section .totals {
+    font-size: 28px;
+    margin-bottom: 16px;
+}
+
+/* ===== grid پست‌ها ===== */
+.posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+/* ===== کارت پست ===== */
+.post-card {
+    background: var(--bg-glass);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.post-card:hover {
+    box-shadow: var(--shadow-glow);
+    transform: translateY(-3px);
+}
+
+/* تصویر پست */
 .post-image--cont {
-  position: relative;
-  width: 300px;
-  height: 300px;
-  overflow: hidden;
-  border-radius: 12px;
-  cursor: pointer;
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
 }
 
 .post-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.5s ease;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
-.post-image--cont::after {
-  content: "";
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: radial-gradient(circle, rgba(0,0,0,0) 60%, rgba(0,0,0,0.5) 100%);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.5s ease;
+/* بخش اطلاعات پست */
+.post-data {
+    padding: 12px 16px;
 }
 
-.post-image--cont:hover .post-image {
-  transform: scale(1.1);
-}
-
-.post-image--cont:hover::after {
-  opacity: 1;
-}
-.main-cont{
+.profile-info--cont {
     display: flex;
-    margin: 20px auto;
     align-items: center;
-    justify-content: center;
-}
-.posts-container{
-    margin: 50px auto 0;
-    width: 80%;
+    gap: 10px;
+    margin-bottom: 10px;
 }
 
-.posts--title{
-    width: 50%;
+.profile-image {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
 }
-.post-info{
-    position: relative;
-    height: 228px;
+
+.username-link {
+    font-weight: 500;
+    color: var(--color-primary);
+    transition: var(--transition);
 }
-.post-time{
-    position: absolute;
-    bottom: 0;
+.username-link:hover {
+    color: var(--color-secondary);
 }
-.post-desc {
-    margin: 30px 15px 10px;
+
+/* اطلاعات اصلی پست */
+.post-info .title-cont {
+    margin-bottom: 6px;
+}
+
+.post-info .title {
     font-size: 20px;
-    text-align: center;
+    font-weight: bold;
+    color: var(--color-text);
 }
 
-.title-cont{
-    text-align: center;
-    margin-left: 20px;
+.post-desc {
+    font-size: 16px;
+    color: var(--color-text);
+    margin-bottom: 8px;
 }
 
-.totals{
-    color: #2a70ca;
-    border: 2px solid #2a70ca;
-    width: 30%;
-    height: 50px;
-    text-align: center;
-    padding: 10px;
-    justify-content: center;
-    margin: 10px auto;
-    align-items: center;
-    align-content: center;
-    justify-items: center;
+.post-time {
+    font-size: 14px;
+    color: var(--color-muted);
 }

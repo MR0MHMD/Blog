@@ -1,36 +1,8 @@
 /* post-detail-modern.css */
 
-:root {
-    --bg-main: #0f111a;
-    --bg-glass: rgba(255, 255, 255, 0.05);
-    --accent-gradient: linear-gradient(135deg, #6a5cff, #ff4dd2);
-    --muted: rgba(255,255,255,0.6);
-    --glass-blur: 12px;
-    --max-width: 980px;
-}
-
-* {
-    box-sizing: border-box;
-}
 
 main{
     margin: 0 auto;
-}
-
- body {
-    height: 100%;
-    margin: 0;
-    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", sans-serif;
-    background: radial-gradient(circle at 10% 10%, rgba(106,92,255,0.12), transparent 10%),
-                radial-gradient(circle at 90% 90%, rgba(255,77,210,0.06), transparent 12%),
-                var(--bg-main);
-    color: #e6edf3;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    padding: 32px 18px;
-    /*display: flex;*/
-    align-items: flex-start;
-    justify-content: center;
 }
 
 /* Page layout */
