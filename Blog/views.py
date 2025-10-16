@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.postgres.search import TrigramSimilarity
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
-from django.views.generic import ListView
+# from django.views.generic import ListView
 # from django.http import HttpResponse
 from django.db.models import Q
 from .models import *

@@ -12,8 +12,8 @@
 
         <div class="footer-col">
             <h3>دسترسی سریع</h3>
-            <a href="#">خانه</a>
-            <a href="#">پست‌ها</a>
+            <a href="{% url 'blog:index' %}">خانه</a>
+            <a href="{% url 'blog:post_list' %}">پست‌ها</a>
             <a href="#">دسته‌بندی‌ها</a>
             <a href="#">تماس با ما</a>
         </div>
@@ -22,17 +22,17 @@
             <h3>ما را دنبال کنید</h3>
             <div class="footer-social">
                 <!-- Instagram -->
-                <a href="#" title="Instagram" aria-label="Instagram">
+                <a href="https://www.instagram.com/sh_mr.mhmd?igsh=bWFxbXNza3BxcmNp" title="Instagram" aria-label="Instagram">
                     <img src="{% static 'icons/Instagram.svg' %}" alt="">
                 </a>
         
                 <!-- Telegram -->
-                <a href="#" title="Telegram" aria-label="Telegram">
+                <a href="https://t.me/MR0MHMD" title="Telegram"  aria-label="Telegram">
                     <img src="{% static 'icons/Telegram.svg' %}" alt="">
                 </a>
         
                 <!-- GitHub -->
-                <a href="#" title="GitHub" aria-label="GitHub">
+                <a href="https://github.com/MR0MHMD" title="GitHub" aria-label="GitHub">
                     <img src="{% static 'icons/GitHub.svg' %}" alt="">
                 </a>
             </div>

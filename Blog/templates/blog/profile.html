@@ -7,24 +7,63 @@
     <link rel="stylesheet" href="{% static 'CSS/blog/profile.css' %}">
 {% endblock %}
 {% block content %}
-	<table class="table" >
-        <tr class="tr">
-            <th class="row">ردیف</th>
-            <th>پست</th>
-            <th>ویرایش</th>
-            <th>حذف</th>
-        </tr>
-        {% for post in posts %}
-            <tr class="tr">
-                <td class="row">{{ forloop.counter }}</td>
-                <td><a class="title" href="{{ post.get_absolute_url }}">{{ post.title }}</a></td>
-                <td><a href="{% url 'blog:edit_post' post.id %}">
-                    <img class="icon edit" src="{% static 'icons/edit.svg' %}" alt="ویرایش">
-                </a></td>
-                <td><a href="{% url 'blog:delete_post' post.id %}">
-                    <img class="icon delete" src="{% static 'icons/delete.svg' %}" alt="حذف">
-                </a></td>
-            </tr>
-        {% endfor %}
-    </table>
+
+    <div class="profile-dashboard">
+        <div class="user-menu">
+            <div class="menu-header">
+                <img src="{{ user.account.photo.url }}" alt="profile" class="menu-avatar">
+                <span class="menu-username">{{ user.username }}</span>
+                <button class="menu-toggle">☰</button>
+            </div>
+
+            <ul class="menu-options">
+                <li><a href="{% url 'blog:edit_account' %}">✏️ ویرایش اطلاعات حساب</a></li>
+                <li><a href="{% url 'blog:create_post' %}">➕ افزودن پست جدید</a></li>
+                <li><a href="{% url 'blog:password_change' %}">🔑 تغییر رمز عبور</a></li>
+                <li>
+                    <form method="post" action="{% url 'blog:logout' %}">
+                        {% csrf_token %}
+                        <button class="logout" type="submit">🚪 خروج از حساب</button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+
+        <div class="table-section">
+            <h2 class="posts-title">پست‌های شما</h2>
+            <table class="table">
+                <tr class="tr">
+                    <th class="row">ردیف</th>
+                    <th>پست</th>
+                    <th>ویرایش</th>
+                    <th>حذف</th>
+                </tr>
+                {% for post in posts %}
+                    <tr class="tr">
+                        <td class="row">{{ forloop.counter }}</td>
+                        <td><a class="title" href="{{ post.get_absolute_url }}">{{ post.title }}</a></td>
+                        <td>
+                            <a href="{% url 'blog:edit_post' post.id %}">
+                                <img class="icon edit" src="{% static 'icons/edit.svg' %}" alt="ویرایش">
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{% url 'blog:delete_post' post.id %}">
+                                <img class="icon delete" src="{% static 'icons/delete.svg' %}" alt="حذف">
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+
+    <script>
+        const toggle = document.querySelector('.menu-toggle');
+        const menu = document.querySelector('.menu-options');
+        toggle.addEventListener('click', () => {
+            menu.classList.toggle('open');
+        });
+    </script>
+
 {% endblock %}

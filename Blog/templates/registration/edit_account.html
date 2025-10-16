@@ -1,16 +1,18 @@
 {% extends 'parent/base.html' %}
 {% load static %}
 {% block title %}edit account{% endblock %}
+{% block head %}
+	<link rel="stylesheet" href="{% static 'CSS/forms/forms.css' %}">
+{% endblock %}
 {% block content %}
     <h1>ویرایش اطلاعات</h1>
     <p>لطفا اطلاعات خود را ویرایش کنید</p>
-    <form class="form" method="post" enctype="multipart/form-data">
-        <fieldset class="fieldset">
-            <legend>ثبت نام</legend>
+    <div class="form-container">
+        <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
-            {{ user_form.as_div }}
-            {{ account_form.as_div }}
-            <input class="submit" type="submit" value="ذخیره">
-        </fieldset>
-    </form>
+            {{ user_form.as_p }}
+            {{ account_form.as_p }}
+            <input type="submit" value="ذخیره">
+        </form>
+    </div>
 {% endblock %}

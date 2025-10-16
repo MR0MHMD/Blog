@@ -5,12 +5,12 @@
     <link rel="stylesheet" href="{% static 'CSS/forms/forms.css' %}">
 {% endblock %}
 {% block content %}
-        <div class="form-container">
-        <h2>ارسال فرم</h2>
+    <div class="form-container">
+        <h2>ایجاد پست</h2>
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form.as_p }}
             <input type="submit" value="ارسال">
         </form>
-    </div> 
+    </div>
 {% endblock %}

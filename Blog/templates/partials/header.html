@@ -9,10 +9,10 @@
 
         <!-- Navigation Links -->
         <div class="nav-links">
-            <a href="#">خانه</a>
+            <a href="{% url 'blog:index' %}">خانه</a>
             <a href="#">دسته‌بندی‌ها</a>
             <a href="#">درباره ما</a>
-            <a href="#">تماس با ما</a>
+            <a href="{% url 'blog:ticket' %}">تماس با ما</a>
         </div>
 
         <!-- Search Box -->
@@ -22,9 +22,14 @@
         </form>
 
         <!-- Profile / Auth -->
-        <div class="user-actions">
-            <a href="#" class="login">ورود</a>
-            <a href="#" class="signup">ثبت‌نام</a>
-        </div>
+        {% if request.user.is_authenticated %}
+            <div class="user-actions">
+                <a href="{% url 'blog:profile' %}" class="signup">{{ user.username }}</a>
+            </div>
+        {% else %}
+            <div class="user-actions">
+                <a href="{% url 'blog:login' %}" class="signup">ورود</a>
+            </div>
+        {% endif %}
     </nav>
-</header>uery
+</header>

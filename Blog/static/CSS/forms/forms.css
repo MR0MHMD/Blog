@@ -61,10 +61,11 @@ textarea {
 }
 
 /* Submit button */
-form button,
+form button, .confirm,
 input[type="submit"] {
     background: linear-gradient(135deg, #6a5cff, #ff4dd2);
     color: white;
+    text-align: center;
     font-weight: 600;
     border: none;
     padding: 12px 18px;
@@ -121,3 +122,12 @@ input[type="submit"]:hover {
     background: linear-gradient(135deg, #6a5cff, #ff4dd2);
     transform: translateY(-3px);
 }
+input[type='checkbox'] {
+    display: inline;
+}
+
+.confirm:hover {
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(255, 77, 210, 0.4);
+ }

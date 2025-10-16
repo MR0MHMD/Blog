@@ -1,2 +1,14 @@
-<h1>شما از حساب کاربری خود خارج شدید</h1>
-<a href="{% url 'blog:login' %}">ورود مجدد</a>
+{% extends 'parent/base.html' %}
+{% load static %}
+{% block title %}change password{% endblock %}
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/forms/forms.css' %}">
+{% endblock %}
+{% block content %}
+    <div class="form-container">
+        <h2>شما از حساب کاربری خود خارج شدید</h2>
+        <form method="post">
+            <a class="confirm" href="{% url 'blog:profile' %}">ورود مجدد</a>
+        </form>
+    </div>
+{% endblock %}
